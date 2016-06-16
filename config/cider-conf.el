@@ -25,3 +25,7 @@
 ;; (setq nrepl-port "4555")
 
 (setq cider-repl-display-help-banner nil)
+
+(setq cider-repl-pop-to-buffer-on-connect nil)
+
+(setq cider-show-error-buffer 'except-in-repl)
