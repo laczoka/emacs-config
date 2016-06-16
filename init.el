@@ -25,12 +25,12 @@
 )
   "A list of packages to ensure are installed at launch.")
 
-(package-refresh-contents)
+;; (package-refresh-contents)
 
-(dolist (p my-packages)
-  (when (not (package-installed-p p))
-    (print (format "Installing %s" p))
-    (package-install p)))
+;;(dolist (p my-packages)
+;;  (when (not (package-installed-p p))
+;;    (print (format "Installing %s" p))
+;;    (package-install p)))
 
 ;; TODO
 ;; (add-hook 'cider-repl-mode-hook #'eldoc-mode)
