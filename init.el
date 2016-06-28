@@ -63,7 +63,7 @@
 (load "magit-conf.el")
 
 ;; (load "ocaml-conf.el")
-(load "ocaml-ide-conf.el")
+;; (load "ocaml-ide-conf.el")
 
 (load "custom.el")
 
