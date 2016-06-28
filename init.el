@@ -50,17 +50,22 @@
 (load-theme 'noctilux t)
 
 ;; Activate and configure modes
+(add-to-list 'load-path "~/.emacs.d/config")
 
-(load "~/.emacs.d/config/paredit-conf.el")
-(load "~/.emacs.d/config/mic-paren-conf.el")
-(load "~/.emacs.d/config/clojure-conf.el")
-(load "~/.emacs.d/config/flx-ido-conf.el")
-(load "~/.emacs.d/config/ido-conf.el")
-(load "~/.emacs.d/config/company-mode-conf.el")
-(load "~/.emacs.d/config/cider-conf.el")
-(load "~/.emacs.d/config/gitgutter-conf.el")
-(load "~/.emacs.d/config/magit-conf.el")
-(load "~/.emacs.d/config/custom.el")
+(load "paredit-conf.el")
+(load "mic-paren-conf.el")
+(load "clojure-conf.el")
+(load "flx-ido-conf.el")
+(load "ido-conf.el")
+(load "company-mode-conf.el")
+(load "cider-conf.el")
+(load "gitgutter-conf.el")
+(load "magit-conf.el")
+
+;; (load "ocaml-conf.el")
+(load "ocaml-ide-conf.el")
+
+(load "custom.el")
 
 
 ;; Save buffers and minibuffer completion
