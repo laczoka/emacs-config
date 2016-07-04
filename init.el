@@ -20,6 +20,7 @@
 		      magit
 		      git-gutter
 		      markdown-mode
+		      clj-refactor
 		      ;; merlin
 
 )
@@ -61,6 +62,7 @@
 (load "cider-conf.el")
 (load "gitgutter-conf.el")
 (load "magit-conf.el")
+(load "clj-refactor-conf.el")
 
 ;; (load "ocaml-conf.el")
 ;; (load "ocaml-ide-conf.el")
