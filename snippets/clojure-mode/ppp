@@ -1,0 +1,5 @@
+#name: ppp
+# --
+(do
+  (require 'clojure.pprint)
+  (spit "$1" (with-out-str (clojure.pprint/pprint $2))))

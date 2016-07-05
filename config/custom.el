@@ -2,7 +2,10 @@
 (setq mac-option-key-is-meta t)
 (setq mac-right-option-modifier nil)
 
-
+;; yas-
+(when (require 'yasnippet nil 'noerror)
+  (progn
+    (yas/load-directory "~/.emacs.d/snippets")))
 
 (defun comment-or-uncomment-region-or-line ()
     "Comments or uncomments the region or the current line if there's no active region."

@@ -29,3 +29,7 @@
 (setq cider-repl-pop-to-buffer-on-connect nil)
 
 (setq cider-show-error-buffer 'except-in-repl)
+
+(setq cider-prompt-for-symbol nil)
+
+(setq cider-font-lock-dynamically '(macro core function var))

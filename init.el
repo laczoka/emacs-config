@@ -1,41 +1,39 @@
 (require 'package)
-(add-to-list 'package-archives
+(add-to-list 'package-archives	     
+	     '("melpa" . "https://melpa.org/packages/")
 	     '("melpa-stable" . "https://stable.melpa.org/packages/")
-					;'("melpa" . "https://melpa.org/packages/")
+	     ;; '("marmalade" . "http://marmalade-repo.org/packages/")
 	     )
+
+(setq required-packages
+      '(paredit
+	clojure-mode
+	cider
+	rainbow-delimiters
+	mic-paren
+	company
+	company-flx
+	ido-ubiquitous
+	flx-ido
+	magit
+	git-gutter
+	markdown-mode
+	clj-refactor
+	aggressive-indent))
 
 (add-to-list 'package-pinned-packages '(cider . "melpa-stable") t)
 
 (package-initialize)
 
-(defvar my-packages '(clojure-mode 
-		      cider 
-		      paredit
-		      rainbow-delimiters
-		      mic-paren
-		      company
-		      ;; company-flx -> no stable version yet
-		      ido-ubiquitous
-		      flx-ido
-		      magit
-		      git-gutter
-		      markdown-mode
-		      clj-refactor
-		      ;; merlin
+(defun install-required-packages (package-list)
+  (package-refresh-contents)
+  (dolist (p package-list)
+    (when (not (package-installed-p p))
+      (print (format "Installing %s" p))
+      (package-install p))))
 
-)
-  "A list of packages to ensure are installed at launch.")
+;; (install-required-packages required-packages)
 
-;; (package-refresh-contents)
-
-;;(dolist (p my-packages)
-;;  (when (not (package-installed-p p))
-;;    (print (format "Installing %s" p))
-;;    (package-install p)))
-
-;; TODO
-;; (add-hook 'cider-repl-mode-hook #'eldoc-mode)
-;; (global-company-mode)
 
 ;; Emacs reset
 (menu-bar-mode -1)
@@ -54,10 +52,15 @@
 (add-to-list 'load-path "~/.emacs.d/config")
 
 (load "paredit-conf.el")
+(load "aggressive-indent-conf.el")
 (load "mic-paren-conf.el")
 (load "clojure-conf.el")
 (load "flx-ido-conf.el")
 (load "ido-conf.el")
+
+(with-eval-after-load 'company
+  (company-flx-mode +1))
+
 (load "company-mode-conf.el")
 (load "cider-conf.el")
 (load "gitgutter-conf.el")
