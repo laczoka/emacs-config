@@ -31,5 +31,5 @@
 (setq cider-show-error-buffer 'except-in-repl)
 
 (setq cider-prompt-for-symbol nil)
-
+;; NOTE: disable the next line if you experience lags when working in Clojure source buffers
 (setq cider-font-lock-dynamically '(macro core function var))
