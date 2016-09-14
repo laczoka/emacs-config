@@ -19,7 +19,13 @@
 	git-gutter
 	markdown-mode
 	clj-refactor
-	aggressive-indent))
+	cljr-helm
+	;; projectile ;; not currently used
+	;; helm-projectile ;; not currently used
+	aggressive-indent
+	mustache-mode
+	rust-mode
+	racer))
 
 (add-to-list 'package-pinned-packages '(cider . "melpa-stable") t)
 
@@ -32,7 +38,7 @@
       (print (format "Installing %s" p))
       (package-install p))))
 
-;; (install-required-packages required-packages)
+(install-required-packages required-packages)
 
 
 ;; Emacs reset
@@ -42,7 +48,10 @@
 (setq exec-path (append exec-path '("~/bin" "/usr/local/bin")))
 (setq-default cursor-type 'bar)
 (global-linum-mode)
-(set-default-font "Consolas 14")
+;;(set-default-font "Consolas 14")
+(set-default-font "Inconsolata 16")
+
+(require 'helm-config)
 
 ;; Activate theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
@@ -66,6 +75,9 @@
 (load "gitgutter-conf.el")
 (load "magit-conf.el")
 (load "clj-refactor-conf.el")
+(require 'mustache-mode)
+
+(load "racer-conf.el")
 
 ;; (load "ocaml-conf.el")
 ;; (load "ocaml-ide-conf.el")

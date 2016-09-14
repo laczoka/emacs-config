@@ -2,4 +2,4 @@
 # --
 (do
   (require 'clojure.pprint)
-  (spit "$1" (with-out-str (clojure.pprint/pprint $2))))
+  (spit "$1.tmp" (with-out-str (clojure.pprint/pprint $2))))
