@@ -1,44 +1,42 @@
 (require 'package)
 (add-to-list 'package-archives	     
-	     '("melpa" . "https://melpa.org/packages/")
+	     ;; '("melpa" . "https://melpa.org/packages/")
 	     '("melpa-stable" . "https://stable.melpa.org/packages/")
 	     ;; '("marmalade" . "http://marmalade-repo.org/packages/")
 	     )
+(package-initialize)
 
-(setq required-packages
+(defvar my/required-packages
       '(paredit
 	clojure-mode
 	cider
 	rainbow-delimiters
 	mic-paren
 	company
-	company-flx
+	;; company-flx ;; not on stable
 	ido-ubiquitous
 	flx-ido
 	magit
 	git-gutter
 	markdown-mode
 	clj-refactor
-	cljr-helm
+	;; cljr-helm ;; not currently used
 	;; projectile ;; not currently used
 	;; helm-projectile ;; not currently used
-	aggressive-indent
+	;; aggressive-indent ;; temporarily disabled
 	mustache-mode
-	rust-mode
-	racer))
+	))
 
-(add-to-list 'package-pinned-packages '(cider . "melpa-stable") t)
-
-(package-initialize)
-
+(require 'cl-lib)
 (defun install-required-packages (package-list)
-  (package-refresh-contents)
-  (dolist (p package-list)
-    (when (not (package-installed-p p))
-      (print (format "Installing %s" p))
-      (package-install p))))
+  (let ((missing-packages (cl-remove-if #'package-installed-p package-list)))
+    (when missing-packages
+      (package-refresh-contents)
+      (dolist (p package-list)
+	(print (format "Installing %s" p))
+	(package-install p)))))
 
-(install-required-packages required-packages)
+(install-required-packages my/required-packages)
 
 
 ;; Emacs reset
@@ -51,7 +49,7 @@
 ;;(set-default-font "Consolas 14")
 (set-default-font "Inconsolata 16")
 
-(require 'helm-config)
+;(require 'helm-config)
 
 ;; Activate theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
@@ -61,14 +59,14 @@
 (add-to-list 'load-path "~/.emacs.d/config")
 
 (load "paredit-conf.el")
-(load "aggressive-indent-conf.el")
+;; (load "aggressive-indent-conf.el")
 (load "mic-paren-conf.el")
 (load "clojure-conf.el")
 (load "flx-ido-conf.el")
 (load "ido-conf.el")
 
-(with-eval-after-load 'company
-  (company-flx-mode +1))
+;; (with-eval-after-load 'company
+;;   (company-flx-mode +1))
 
 (load "company-mode-conf.el")
 (load "cider-conf.el")
@@ -77,13 +75,7 @@
 (load "clj-refactor-conf.el")
 (require 'mustache-mode)
 
-(load "racer-conf.el")
-
-;; (load "ocaml-conf.el")
-;; (load "ocaml-ide-conf.el")
-
 (load "custom.el")
-
 
 ;; Save buffers and minibuffer completion
 (desktop-save-mode 1)
